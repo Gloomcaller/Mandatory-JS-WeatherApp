@@ -1,7 +1,8 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-color: wheat;
-    margin: 0;
+    max-width: 600px;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,10 +31,12 @@ button[type="submit"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 2px 2px 5px gray;
+    transition: background-color 0.2s ease-in-out;
 }
 
 button[type="submit"]:hover {
-    background-color: aqua;
+    background-color: #00bcd4;
 }
 
 .card {
@@ -45,6 +48,11 @@ button[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s;
 }
 
 h1 {

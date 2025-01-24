@@ -1,9 +1,8 @@
-const waetherForm = document.querySelector(".weatherForm");
+const weatherForm = document.querySelector(".weatherForm");
 const cityInput = document.querySelector(".cityInput");
 const card = document.querySelector(".card");
-const apiKey = apiKey;
 
-waetherForm.addEventListener("submit", async event => {
+weatherForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const city = cityInput.value;
     if (city) {
@@ -12,7 +11,7 @@ waetherForm.addEventListener("submit", async event => {
             displayWeatherInfo(weatherData);
         } catch (error) {
             console.error(error);
-            displayError(error);
+            displayError(error.message);
         }
     } else {
         displayError("Please enter a city");
@@ -23,7 +22,7 @@ async function getWeatherData(city) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     const response = await fetch(apiUrl);
     if (!response.ok) {
-        throw new Error("Could not fetch weather data");
+        throw new Error("Could not fetch weather data. Please check your API key or city name.");
     }
     return await response.json();
 }
@@ -59,24 +58,25 @@ function displayWeatherInfo(data) {
 }
 
 function getWeatherEmoji(weatherID) {
-    switch (true) {
-        case (weatherID >= 200 && weatherID < 300):
-            return "⛈️";
-        case (weatherID >= 300 && weatherID < 400):
-            return "🌧️";
-        case (weatherID >= 500 && weatherID < 600):
-            return "🌧️";
-        case (weatherID >= 600 && weatherID < 700):
-            return "❄️";
-        case (weatherID >= 700 && weatherID < 800):
-            return "🌫️";
-        case (weatherID === 800):
-            return "☀️";
-        case (weatherID >= 801 && weatherID < 810):
-            return "☁️";
-        default:
-            return "❔";
-    }
+    const emojiMap = {
+        thunderstorm: "⛈️",
+        drizzle: "🌧️",
+        rain: "🌧️",
+        snow: "❄️",
+        atmosphere: "🌫️",
+        clear: "☀️",
+        clouds: "☁️",
+    };
+
+    if (weatherID >= 200 && weatherID < 300) return emojiMap.thunderstorm;
+    if (weatherID >= 300 && weatherID < 400) return emojiMap.drizzle;
+    if (weatherID >= 500 && weatherID < 600) return emojiMap.rain;
+    if (weatherID >= 600 && weatherID < 700) return emojiMap.snow;
+    if (weatherID >= 700 && weatherID < 800) return emojiMap.atmosphere;
+    if (weatherID === 800) return emojiMap.clear;
+    if (weatherID >= 801 && weatherID < 810) return emojiMap.clouds;
+
+    return "❔";
 }
 
 function displayError(message) {
