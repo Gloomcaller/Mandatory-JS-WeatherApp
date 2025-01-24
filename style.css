@@ -1,11 +1,15 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: wheat;
+    background-image: url(./images/default.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     max-width: 600px;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
 }
 
 .weatherForm {
@@ -26,7 +30,7 @@ button[type="submit"] {
     padding: 10px 20px;
     font-weight: bold;
     font-size: larger;
-    background-color: aquamarine;
+    background-color: #6495ED;
     color: white;
     border: none;
     border-radius: 5px;
@@ -40,7 +44,7 @@ button[type="submit"]:hover {
 }
 
 .card {
-    background: linear-gradient(180deg, blue, orange);
+    background: linear-gradient(180deg, #6495ED, #FFFACD);
     padding: 50px;
     box-shadow: 2px 2px 5px gray;
     min-width: 300px;
@@ -68,7 +72,7 @@ p {
 .cityDisplay,
 .tempDisplay {
     font-size: x-large;
-    color: darkgray;
+    color: black;
     margin-bottom: 25px;
 }
 
@@ -85,7 +89,7 @@ p {
 
 .weatherEmoji {
     margin: 0;
-    font-size: 7rem;
+    font-size: 8rem;
 }
 
 .errorDisplay {

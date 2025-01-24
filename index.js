@@ -55,6 +55,8 @@ function displayWeatherInfo(data) {
     card.appendChild(humidityDisplay);
     card.appendChild(descDisplay);
     card.appendChild(weatherEmoji);
+
+    updateBackground(id);
 }
 
 function getWeatherEmoji(weatherID) {
@@ -63,7 +65,7 @@ function getWeatherEmoji(weatherID) {
         drizzle: "🌧️",
         rain: "🌧️",
         snow: "❄️",
-        atmosphere: "🌫️",
+        fog: "🌫️",
         clear: "☀️",
         clouds: "☁️",
     };
@@ -72,11 +74,39 @@ function getWeatherEmoji(weatherID) {
     if (weatherID >= 300 && weatherID < 400) return emojiMap.drizzle;
     if (weatherID >= 500 && weatherID < 600) return emojiMap.rain;
     if (weatherID >= 600 && weatherID < 700) return emojiMap.snow;
-    if (weatherID >= 700 && weatherID < 800) return emojiMap.atmosphere;
+    if (weatherID >= 700 && weatherID < 800) return emojiMap.fog;
     if (weatherID === 800) return emojiMap.clear;
     if (weatherID >= 801 && weatherID < 810) return emojiMap.clouds;
 
     return "❔";
+}
+
+function updateBackground(weatherID) {
+    const body = document.body;
+    const imageMap = {
+        thunderstorm: "url('./images/thunderstorm.jpg')",
+        drizzle: "url('./images/drizzle.jpg')",
+        rain: "url('./images/rain.jpg')",
+        snow: "url('./images/snow.jpg')",
+        fog: "url('./images/fog.jpg')",
+        clear: "url('./images/clear.jpg')",
+        clouds: "url('./images/clouds.jpg')",
+    };
+
+    let backgroundImage = "url('./images/default.jpg')";
+
+    if (weatherID >= 200 && weatherID < 300) backgroundImage = imageMap.thunderstorm;
+    else if (weatherID >= 300 && weatherID < 400) backgroundImage = imageMap.drizzle;
+    else if (weatherID >= 500 && weatherID < 600) backgroundImage = imageMap.rain;
+    else if (weatherID >= 600 && weatherID < 700) backgroundImage = imageMap.snow;
+    else if (weatherID >= 700 && weatherID < 800) backgroundImage = imageMap.fog;
+    else if (weatherID === 800) backgroundImage = imageMap.clear;
+    else if (weatherID >= 801 && weatherID < 810) backgroundImage = imageMap.clouds;
+
+    body.style.backgroundImage = backgroundImage;
+    body.style.backgroundSize = "cover";
+    body.style.backgroundPosition = "center";
+    body.style.backgroundRepeat = "no-repeat";
 }
 
 function displayError(message) {
