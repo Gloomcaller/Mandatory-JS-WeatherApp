@@ -1,4 +1,4 @@
-# Mandatory-JS-WeatherApp
+# JS-WeatherApp
 
 A simple weather application that allows users to fetch current weather information for a city by entering its name. This project utilizes the OpenWeather API to retrieve real-time weather data.
 
